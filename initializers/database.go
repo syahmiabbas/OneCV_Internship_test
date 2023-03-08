@@ -1,11 +1,22 @@
 package initializers
 
 import (
+	"log"
+	"os"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
+var DB *gorm.DB
+
 func ConnectToDB() {
-	dsn := "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	var err error
+	dsn := os.Getenv("DB_URL")
+
+	DB, err = gorm.Open(mysql.Open(dsn), &gorm.Config{})
+
+	if err != nil {
+		log.Fatal("Failed to connect to the database")
+	}
 }
