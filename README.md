@@ -35,3 +35,10 @@ OR
 
 CompileDaemon -command="./OneCV_Internship_test" # Run the server locally with updates
 ```
+
+## Running Test cases
+```
+cd controllers
+go test
+```
+
